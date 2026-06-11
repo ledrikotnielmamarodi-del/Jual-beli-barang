@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Boss Hugo - Aplikasi Jual Beli Karya Pelajar</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Ikon FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .wave-bg {
+            background: linear-gradient(135deg, #0f5c8c 0%, #14b8a6 100%);
+        }
+        /* Bar skrol tersuai */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #14b8a6;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- PEMBUNGKUS APLIKASI -->
+    <div id="app" class="flex-grow flex flex-col">
+
+        <!-- ============================================== -->
+        <!-- 1. LAMAN UTAMA (MUKA DEPAN) -->
+        <!-- ============================================== -->
+        <div id="page-landing" class="flex-grow flex flex-col">
+            <!-- Pengepala/Bar Navigasi -->
+            <header class="wave-bg text-white shadow-lg relative pb-20">
+                <div class="max-w-7xl mx-auto px-4 py-5 flex justify-between items-center">
+                    <!-- Logo & Nama Institusi -->
+                    <div class="flex items-center space-x-3" style="cursor: pointer;" onclick="switchPage('landing')">
+                        <img src="image_e0dea0.png" alt="Logo Child Aid Papua" class="w-12 h-12 object-contain bg-white rounded-full p-0.5 border border-white/20 shadow-sm" onerror="this.onerror=null; this.outerHTML='<div class=\'w-10 h-10 rounded-full bg-white/20 flex items-center justify-center border border-white/30 backdrop-blur-sm\'><i class=\'fa-solid fa-cloud-sun text-xl text-yellow-300\'></i></div>';">
+                        <div>
+                            <h1 class="font-bold text-lg leading-tight tracking-wide">Smart Child Aid Papua</h1>
+                            <p class="text-xs text-teal-100">Karya & Rekaan Sendiri</p>
+                        </div>
+                    </div>
+                    <!-- Menu Navigasi -->
+                    <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                        <a href="#" class="hover:text-yellow-300 transition" onclick="switchPage('landing')">Laman Utama</a>
+                        <a href="#fitur" class="hover:text-yellow-300 transition">Ciri Unggulan</a>
+                        <a href="#" class="hover:text-yellow-300 transition" onclick="switchPage('login')">Kedai</a>
+                        <button onclick="switchPage('login')" class="bg-white text-teal-700 px-5 py-2 rounded-full font-bold hover:bg-yellow-300 hover:text-sky-900 transition shadow-md">
+                            <i class="fa-solid fa-right-to-bracket mr-2"></i>Masuk Kedai
+                        </button>
+                    </nav>
+                    <!-- Butang Menu Mudah Alih -->
+                    <button class="md:hidden text-white focus:outline-none" onclick="toggleMobileNav()">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Bahagian Banner/Hero -->
+                <div class="max-w-7xl mx-auto px-4 pt-10 pb-8 flex flex-col lg:flex-row items-center justify-between gap-10 text-white relative z-10">
+                    <!-- Sisi Kiri: Teks Promosi & Butang Tindakan -->
+                    <div class="lg:w-1/2 text-center lg:text-left space-y-6">
+                        <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Market Boss Hugo</h2>
+                        <p class="text-base md:text-lg text-teal-50 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                            Wadah kreativiti anak-anak Papua untuk memasarkan karya seni, kraf tangan dan produk keusahawanan berdaya saing tinggi.
+                        </p>
+                        <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                            <button onclick="switchPage('login')" class="bg-yellow-400 text-sky-950 font-bold px-8 py-3.5 rounded-full hover:bg-yellow-300 transition transform hover:-translate-y-1 shadow-lg text-sm md:text-base flex items-center">
+                                Mula Membeli-belah <i class="fa-solid fa-shopping-bag ml-2"></i>
+                            </button>
+                            <a href="#fitur" class="bg-transparent border border-white/40 text-white font-medium px-8 py-3.5 rounded-full hover:bg-white/10 transition flex items-center justify-center text-sm md:text-base">
+                                Lihat Ciri
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Sisi Kanan: Foto Pelajar Child Aid Papua (Diperbarui dengan imej pilihan anda) -->
+                    <div class="lg:w-1/2 w-full max-w-lg">
+                        <div class="bg-white/10 p-2.5 rounded-3xl backdrop-blur-sm border border-white/20 shadow-2xl transform hover:scale-[1.02] transition duration-300">
+                            <img src="image_2c777a.png" alt="Siswa-siswi Smart Child Aid Papua" class="rounded-2xl w-full h-auto object-cover shadow-inner" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=600&q=80';">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pembahagi Bentuk Ombak -->
+                <div class="absolute bottom-0 left-0 right-0">
+                    <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-12 md:h-20 fill-slate-50">
+                        <path d="M0,32L120,42.7C240,53,480,75,720,74.7C960,75,1200,53,1320,42.7L1440,32L1440,120L1320,120C1200,120,960,120,720,120C480,120,240,120,120,120L0,120Z"></path>
+                    </svg>
+                </div>
+            </header>
+
+            <!-- Menu Jatuh Bawah Navigasi Mudah Alih -->
+            <div id="mobile-nav" class="hidden bg-sky-900 text-white px-4 py-4 space-y-3 shadow-inner md:hidden">
+                <a href="#" class="block hover:text-yellow-300 py-1 border-b border-sky-800" onclick="switchPage('landing'); toggleMobileNav();">Laman Utama</a>
+                <a href="#fitur" class="block hover:text-yellow-300 py-1 border-b border-sky-800" onclick="toggleMobileNav()">Ciri</a>
+                <a href="#" class="block hover:text-yellow-300 py-1 border-b border-sky-800" onclick="switchPage('login'); toggleMobileNav();">Kedai</a>
+                <button onclick="switchPage('login'); toggleMobileNav();" class="w-full text-center bg-teal-500 text-white py-2 rounded-lg font-bold">Masuk Kedai</button>
+            </div>
+
+            <!-- Bahagian Ciri Unggulan -->
+            <main id="fitur" class="max-w-7xl mx-auto px-4 py-16 flex-grow">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-sky-950 mb-3">Ciri Unggulan</h2>
+                    <div class="w-16 h-1 bg-teal-500 mx-auto rounded-full mb-4"></div>
+                    <p class="text-slate-500 font-medium">Inovasi untuk Pembelajaran dan Kemandirian Kreatif Pelajar</p>
+                </div>
+
+                <!-- Grid Kad -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Kad 1: Sistem Gamifikasi -->
+                    <div class="bg-rose-50/40 border border-rose-100 rounded-3xl p-6 hover:shadow-2xl hover:shadow-rose-100 transition duration-300 flex flex-col justify-between">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-14 h-12 rounded-2xl bg-rose-100 text-rose-500 flex items-center justify-center text-2xl mb-4 shadow-sm">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-800 mb-2">Sistem Gamifikasi</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed">
+                                Kumpul mata ganjaran daripada setiap tugasan sekolah anda dan tebus terus dengan baucar beli-belah percuma untuk pelbagai produk hasil karya rakan-rakan anda di kedai kami!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Kad 2: Pemantauan Masa Nyata -->
+                    <div class="bg-emerald-50/40 border border-emerald-100 rounded-3xl p-6 hover:shadow-2xl hover:shadow-emerald-100 transition duration-300 flex flex-col items-center text-center">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-14 h-12 rounded-2xl bg-emerald-100 text-emerald-500 flex items-center justify-center text-2xl mb-4 shadow-sm">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-800 mb-2">Pemantauan Masa Nyata</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed">
+                                Pantau proses pembuatan kraf tangan pelajar, sejarah transaksi pembelian, serta laporan kewangan kas kelas keusahawanan secara langsung dan telus.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Kad 3: Kolaborasi Bersepadu -->
+                    <div class="bg-indigo-50/40 border border-indigo-100 rounded-3xl p-6 hover:shadow-2xl hover:shadow-indigo-100 transition duration-300 flex flex-col justify-between">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-14 h-12 rounded-2xl bg-indigo-100 text-indigo-500 flex items-center justify-center text-2xl mb-4 shadow-sm">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-800 mb-2">Kolaborasi Bersepadu</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed">
+                                Hubungan langsung yang harmoni antara guru pembimbing, pelajar pembuat karya, dan ibu bapa dalam menghargai serta menguruskan usaha mandiri pelajar.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- KAD GRAFIK INTERAKTIF -->
+                    <div class="bg-teal-50/40 border border-teal-100 rounded-3xl p-6 hover:shadow-2xl hover:shadow-teal-100 transition duration-300 flex flex-col justify-between">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-14 h-12 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center text-2xl mb-4 shadow-sm">
+                                <i class="fa-solid fa-chart-column"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-800 mb-2">Grafik Pintar</h3>
+                            <p class="text-slate-600 text-xs leading-relaxed mb-4" style="font-size: 11px;">
+                                Visualisasi data masa nyata pengumpulan hasil jual beli & perkembangan perolehan syiling mata ganjaran pelajar.
+                            </p>
+                        </div>
+
+                        <!-- Panel Mini Grafik Interaktif -->
+                        <div class="bg-white p-3 rounded-2xl border border-teal-100/50 shadow-inner space-y-3">
+                            <div class="flex justify-between items-center text-[10px]">
+                                <span class="font-bold text-slate-700 text-[9px]" id="chart-title-lbl">Hasil Jualan (2026)</span>
+                                <div class="flex space-x-1">
+                                    <button onclick="toggleChartData('omset')" id="btn-chart-omset" class="px-2 py-0.5 rounded bg-teal-500 text-white font-bold transition text-[9px]">Rp</button>
+                                    <button onclick="toggleChartData('karya')" id="btn-chart-karya" class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-bold transition text-[9px]">Unit</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Batang Grafik / Kawasan Carta -->
+                            <div class="h-28 flex items-end justify-between px-2 pt-2 relative">
+                                <!-- Garis Panduan Latar Belakang -->
+                                <div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20">
+                                    <div class="border-b border-slate-300 w-full h-0"></div>
+                                    <div class="border-b border-slate-300 w-full h-0"></div>
+                                    <div class="border-b border-slate-300 w-full h-0"></div>
+                                </div>
+                                
+                                <!-- Bar 1 -->
+                                <div class="flex flex-col items-center w-8 group z-10">
+                                    <span class="text-[9px] text-teal-600 font-bold opacity-0 group-hover:opacity-100 transition-opacity absolute -translate-y-5" id="bar-val-1">120k</span>
+                                    <div class="w-3.5 bg-gradient-to-t from-teal-400 to-cyan-500 rounded-t-full transition-all duration-500" id="bar-1" style="height: 40%"></div>
+                                    <span class="text-[8px] text-slate-400 mt-1 select-none">Matoa</span>
+                                </div>
+                                <!-- Bar 2 -->
+                                <div class="flex flex-col items-center w-8 group z-10">
+                                    <span class="text-[9px] text-teal-600 font-bold opacity-0 group-hover:opacity-100 transition-opacity absolute -translate-y-5" id="bar-val-2">240k</span>
+                                    <div class="w-3.5 bg-gradient-to-t from-teal-400 to-cyan-500 rounded-t-full transition-all duration-500" id="bar-2" style="height: 70%"></div>
+                                    <span class="text-[8px] text-slate-400 mt-1 select-none">Kaos</span>
+                                </div>
+                                <!-- Bar 3 -->
+                                <div class="flex flex-col items-center w-8 group z-10">
+                                    <span class="text-[9px] text-teal-600 font-bold opacity-0 group-hover:opacity-100 transition-opacity absolute -translate-y-5" id="bar-val-3">350k</span>
+                                    <div class="w-3.5 bg-gradient-to-t from-teal-400 to-cyan-500 rounded-t-full transition-all duration-500" id="bar-3" style="height: 90%"></div>
+                                    <span class="text-[8px] text-slate-400 mt-1 select-none">Seni</span>
+                                </div>
+                                <!-- Bar 4 -->
+                                <div class="flex flex-col items-center w-8 group z-10">
+                                    <span class="text-[9px] text-teal-600 font-bold opacity-0 group-hover:opacity-100 transition-opacity absolute -translate-y-5" id="bar-val-4">195k</span>
+                                    <div class="w-3.5 bg-gradient-to-t from-teal-400 to-cyan-500 rounded-t-full transition-all duration-500" id="bar-4" style="height: 55%"></div>
+                                    <span class="text-[8px] text-slate-400 mt-1 select-none">Sepatu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Bahagian Seruan Tindakan -->
+                <div class="mt-20 bg-gradient-to-r from-sky-900 to-teal-800 rounded-3xl p-8 md:p-12 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between">
+                    <div class="relative z-10 mb-6 md:mb-0 max-w-xl text-center md:text-left">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-3">Sokonglah Kreativiti Anak Papua!</h3>
+                        <p class="text-teal-100 text-sm md:text-base">Setiap pembelian produk di Market Boss Hugo menyumbang secara langsung kepada pembiayaan program biasiswa dan pembangunan kemudahan belajar pelajar di Papua.</p>
+                    </div>
+                    <button onclick="switchPage('login')" class="relative z-10 bg-yellow-400 hover:bg-yellow-300 text-sky-950 font-bold px-8 py-4 rounded-2xl transition shadow-lg shrink-0">
+                        Masuk & Beli-belah Sekarang <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                    <!-- Hiasan Latar Belakang -->
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-teal-500/20 rounded-full blur-2xl"></div>
+                </div>
+            </main>
+
+            <!-- Kaki Laman -->
+            <footer class="bg-slate-900 text-slate-400 py-8 text-center border-t border-slate-800">
+                <p class="text-sm">&copy; 2026 Child Aid Papua - Direka dengan <i class="fa-solid fa-heart text-red-500"></i> oleh Haekal Fikri</p>
+            </footer>
+        </div>
+
+
+        <!-- ============================================== -->
+        <!-- 2. HALAMAN LOG MASUK -->
+        <!-- ============================================== -->
+        <div id="page-login" class="hidden flex-grow wave-bg flex flex-col justify-center items-center py-12 px-4 relative">
+            
+            <!-- Butang Kembali ke Laman Utama -->
+            <button onclick="switchPage('landing')" class="absolute top-6 left-6 text-white hover:text-yellow-300 transition flex items-center space-x-2 font-medium bg-black/10 px-4 py-2 rounded-full backdrop-blur-sm relative z-20">
+                <i class="fa-solid fa-arrow-left"></i> <span>Kembali</span>
+            </button>
+
+            <!-- Kad Bekas Log Masuk -->
+            <div class="w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden border border-white/20 flex flex-col md:flex-row transform transition duration-500 relative z-10">
+                
+                <!-- Sisi Kiri: Gambar Menyambut Pembeli (Diperbarui dengan imej pilihan anda) -->
+                <div class="md:w-1/2 relative bg-slate-900 min-h-[200px] md:min-h-full flex items-stretch">
+                    <img src="image_2c777a.png" alt="Siswa-siswi Smart Child Aid Papua" class="w-full h-full object-cover opacity-90" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=600&q=80';">
+                    <!-- Lapisan Gradasi Gelap -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-sky-950 via-sky-900/40 to-transparent flex flex-col justify-end p-6 text-white">
+                        <span class="text-[10px] font-bold text-yellow-300 uppercase tracking-widest">Senyuman Cahaya Papua</span>
+                        <h3 class="text-lg md:text-xl font-bold mt-1 leading-tight">Generasi Bijak & Kreatif</h3>
+                        <p class="text-[11px] text-teal-100 mt-1 leading-relaxed font-light">
+                            Selamat datang ke kedai kreasi kami. Sokongan anda membantu asrama dan program pendidikan kami untuk terus berkembang.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Sisi Kanan: Borang Log Masuk -->
+                <div class="w-full md:w-1/2 p-8 md:p-10 flex flex-col justify-center bg-white">
+                    <!-- Logo & Pengepala -->
+                    <div class="text-center mb-8">
+                        <div class="flex justify-center mb-4">
+                            <div class="w-20 h-20 rounded-full bg-slate-50 shadow-inner p-1 border border-slate-100 flex items-center justify-center relative overflow-hidden">
+                                <img src="image_e0dea0.png" alt="Logo Resmi Child Aid Papua" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/150';">
+                            </div>
+                        </div>
+                        <h2 class="text-2xl font-bold text-slate-800 tracking-tight">Selamat Datang!</h2>
+                        <p class="text-xs text-slate-500 mt-1">Sila log masuk untuk mula membeli-belah karya pelajar</p>
+                    </div>
+
+                    <!-- Borang Log Masuk -->
+                    <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-5">
+                        
+                        <!-- Amaran Ralat jika salah -->
+                        <div id="login-error" class="hidden bg-rose-50 text-rose-600 p-3 rounded-xl border border-rose-100 text-xs flex items-center space-x-2">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span>Nama pengguna atau kata laluan salah. Gunakan kata laluan khas asrama.</span>
+                        </div>
+
+                        <!-- Input Nama/Nama Pengguna -->
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                            <input 
+                                type="text" 
+                                id="login-username" 
+                                required
+                                placeholder="Nama Anda / ID Pelajar (Contoh: Ledrik)" 
+                                class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition text-xs"
+                            >
+                        </div>
+
+                        <!-- Input Kata Laluan -->
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                                <i class="fa-solid fa-lock" id="togglePasswordIcon" onclick="togglePasswordVisibility()" style="cursor: pointer;"></i>
+                            </span>
+                            <input 
+                                type="password" 
+                                id="login-password" 
+                                required
+                                placeholder="Masukkan Kata Laluan Anda" 
+                                class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white transition text-xs"
+                            >
+                        </div>
+
+                        <!-- Butang Log Masuk -->
+                        <button 
+                            type="submit" 
+                            class="w-full bg-gradient-to-r from-teal-500 to-sky-600 hover:from-teal-600 hover:to-sky-700 text-white font-bold py-3.5 rounded-2xl transition duration-300 shadow-md flex items-center justify-center space-x-2 text-xs"
+                        >
+                            <span>Log Masuk Sekarang</span>
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                        </button>
+                    </form>
+
+                    <!-- Maklumat Akaun Segera -->
+                    <div class="mt-6 p-4 bg-teal-50/50 border border-teal-100/50 rounded-2xl text-[11px] text-teal-800">
+                        <span class="font-bold block mb-1"><i class="fa-solid fa-circle-info mr-1"></i> Akaun Demo Segera:</span>
+                        <p>Masukkan nama <strong class="underline">Ledrik</strong> dan kata laluan khas <strong class="underline">asrama</strong> untuk mengakses papan pemuka pembeli.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Kaki Laman Log Masuk -->
+            <div class="mt-8 text-center text-xs text-white/80">
+                <p>&copy; 2026 Child Aid Papua - Direka dengan <span class="text-rose-400">❤️</span> oleh Haekal Fikri</p>
+            </div>
+        </div>
+
+
+        <!-- ============================================== -->
+        <!-- 3. PAPAN PEMUKA UTAMA / TEMPAT MEMBELI-BELAH -->
+        <!-- ============================================== -->
+        <div id="page-dashboard" class="hidden flex-grow flex flex-col md:flex-row bg-slate-100">
+            
+            <!-- PANEL SISI / SIDEBAR -->
+            <aside id="sidebar-menu" class="hidden md:flex w-full md:w-64 bg-slate-900 md:min-h-screen text-slate-300 flex-col shadow-xl z-20 shrink-0">
+                <!-- Tajuk Jenama -->
+                <div class="p-6 bg-gradient-to-r from-cyan-600 to-teal-600 text-white flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-gamepad text-2xl animate-pulse"></i>
+                        <span class="font-black text-xl tracking-wider">SMART CAP</span>
+                    </div>
+                    <!-- Butang Tutup Menu Mudah Alih -->
+                    <button class="md:hidden text-white" onclick="toggleSidebarMenu()">
+                        <i class="fa-solid fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Kotak Pengguna Aktif -->
+                <div class="p-4 mx-4 my-4 bg-slate-800/60 rounded-2xl border border-slate-800 flex flex-col items-center text-center">
+                    <div class="w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center text-lg font-bold border border-teal-500/30 mb-2">
+                        <span id="user-initials">LO</span>
+                    </div>
+                    <span class="text-xs text-slate-400">Hai, Pembeli 👋</span>
+                    <h4 id="user-display-name" class="font-bold text-sm text-white mt-1">Ledrik Otniel Mamarodi</h4>
+                    <span class="text-[10px] bg-teal-500/10 text-teal-400 px-2.5 py-0.5 rounded-full mt-2 font-medium">Pelajar Tingkatan 4</span>
+                </div>
+
+                <!-- Menu Sisi Utama -->
+                <nav class="flex-grow px-3 space-y-1">
+                    <button onclick="switchSubPage('katalog')" id="btn-menu-katalog" class="w-full flex items-center justify-between px-4 py-3 rounded-xl transition text-sm font-medium bg-slate-800 text-white">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-store text-teal-400"></i>
+                            <span>Katalog Produk</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs opacity-50"></i>
+                    </button>
+
+                    <button onclick="switchSubPage('keranjang')" id="btn-menu-keranjang" class="w-full flex items-center justify-between px-4 py-3 rounded-xl transition text-sm font-medium hover:bg-slate-800 hover:text-white text-slate-400">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-cart-shopping text-teal-400"></i>
+                            <span>Troli Beli-belah</span>
+                        </div>
+                        <span id="cart-badge-count" class="bg-rose-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">0</span>
+                    </button>
+
+                    <!-- MENU MUAT NAIK KARYA -->
+                    <button onclick="switchSubPage('upload')" id="btn-menu-upload" class="w-full flex items-center justify-between px-4 py-3 rounded-xl transition text-sm font-medium hover:bg-slate-800 hover:text-white text-slate-400">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-cloud-arrow-up text-teal-400"></i>
+                            <span>Muat Naik Karya Baharu</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs opacity-50"></i>
+                    </button>
+
+                    <button onclick="switchSubPage('transaksi')" id="btn-menu-transaksi" class="w-full flex items-center justify-between px-4 py-3 rounded-xl transition text-sm font-medium hover:bg-slate-800 hover:text-white text-slate-400">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-receipt text-teal-400"></i>
+                            <span>Sejarah Transaksi</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs opacity-50"></i>
+                    </button>
+
+                    <button onclick="switchSubPage('tentang')" id="btn-menu-tentang" class="w-full flex items-center justify-between px-4 py-3 rounded-xl transition text-sm font-medium hover:bg-slate-800 hover:text-white text-slate-400">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-circle-info text-teal-400"></i>
+                            <span>Tentang Program</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-xs opacity-50"></i>
+                    </button>
+                </nav>
+
+                <!-- Butang Log Keluar Akaun -->
+                <div class="p-4 border-t border-slate-800">
+                    <button onclick="handleLogout()" class="w-full flex items-center justify-center space-x-2 bg-rose-600/10 hover:bg-rose-600/20 text-rose-400 py-2.5 rounded-xl transition text-xs font-semibold">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Log Keluar Akaun</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- KANDUNGAN UTAMA PAPAN PEMUKA -->
+            <div class="flex-grow flex flex-col min-h-screen overflow-x-hidden">
+                
+                <!-- PENGEPALA ATAS -->
+                <header class="bg-sky-600 text-white p-6 shadow-md flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0 relative z-10">
+                    <div class="flex items-center justify-between md:justify-start space-x-4">
+                        <!-- Menu Burger untuk Mudah Alih -->
+                        <button class="md:hidden text-white focus:outline-none" onclick="toggleSidebarMenu()">
+                            <i class="fa-solid fa-bars text-2xl"></i>
+                        </button>
+                        <div>
+                            <h2 class="text-2xl font-bold flex items-center space-x-2">
+                                <span>Selamat Datang, <span id="header-user-name">Ledrik Otniel Mamarodi</span></span> 
+                                <span>🤘</span>
+                            </h2>
+                            <div class="flex items-center space-x-2 mt-1">
+                                <span class="text-sky-200 text-xs font-medium">ID Pelanggan: 573202205</span>
+                                <span class="text-sky-300 text-xs">•</span>
+                                <span class="text-sky-200 text-xs font-medium">Pembeli Pelajar Disahkan</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mata Ganjaran Akaun / Dompet -->
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-2 flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-full bg-yellow-400 text-sky-950 flex items-center justify-center">
+                                <i class="fa-solid fa-coins"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-sky-200 block">Syiling Mata Ganjaran Saya</span>
+                                <span id="user-points" class="font-bold text-sm text-yellow-300">1,250 Mata</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-2 flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-full bg-emerald-400 text-sky-950 flex items-center justify-center">
+                                <i class="fa-solid fa-wallet"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-sky-200 block">Baki Rupiah</span>
+                                <span id="user-balance" class="font-bold text-sm text-emerald-300">Rp 450.000</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- KAWASAN SUB-HALAMAN -->
+                <main class="p-6 flex-grow">
+                    
+                    <!-- A. SUB-HALAMAN: KATALOG PRODUK -->
+                    <section id="sub-katalog" class="space-y-6">
+                        <!-- Penapis Atas & Carian -->
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-white p-4 rounded-3xl shadow-sm border border-slate-100">
+                            <!-- Tab Penapis Kategori -->
+                            <div class="flex flex-wrap gap-2" id="kategori-filter-container">
+                                <button onclick="filterKategori('semua')" class="btn-kat px-4 py-2 rounded-2xl text-xs font-semibold bg-teal-500 text-white transition">Semua Karya</button>
+                                <button onclick="filterKategori('Kerajinan')" class="btn-kat px-4 py-2 rounded-2xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Kraf Tangan</button>
+                                <button onclick="filterKategori('Seni Lukis')" class="btn-kat px-4 py-2 rounded-2xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Seni Lukis</button>
+                                <button onclick="filterKategori('Makanan & Minuman')" class="btn-kat px-4 py-2 rounded-2xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Makanan/Minuman</button>
+                                <button onclick="filterKategori('Pakaian')" class="btn-kat px-4 py-2 rounded-2xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Pakaian</button>
+                            </div>
+
+                            <!-- Input Carian -->
+                            <div class="relative max-w-md w-full">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </span>
+                                <input 
+                                    type="text" 
+                                    id="search-produk" 
+                                    oninput="handleSearch()"
+                                    placeholder="Cari karya pelajar di sini..." 
+                                    class="w-full bg-slate-50 border border-slate-200 rounded-2xl py-2.5 pl-11 pr-4 text-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white text-xs transition"
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Grid Karya Pelajar -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="produk-grid">
+                            <!-- Diisi dinamik oleh JS -->
+                        </div>
+                    </section>
+
+
+                    <!-- B. SUB-HALAMAN: TROLI BELI-BELAH -->
+                    <section id="sub-keranjang" class="hidden space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-slate-800">Troli Beli-belah Anda</h3>
+                            <button onclick="clearCart()" class="text-xs text-rose-500 hover:underline font-semibold flex items-center space-x-1">
+                                <i class="fa-solid fa-trash-can"></i> <span>Kosongkan Troli</span>
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                            <!-- Senarai Item Troli -->
+                            <div class="lg:col-span-2 space-y-4" id="cart-items-list">
+                                <!-- Diisi dinamik oleh JS -->
+                            </div>
+
+                            <!-- Ringkasan Pesanan -->
+                            <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+                                <h4 class="font-bold text-slate-800 pb-3 border-b border-slate-100">Ringkasan Pembayaran</h4>
+                                
+                                <div class="space-y-3 text-xs text-slate-600">
+                                    <div class="flex justify-between">
+                                        <span>Jumlah Harga</span>
+                                        <span class="font-bold text-slate-800" id="cart-raw-subtotal">Rp 0</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Kos Penghantaran (Asrama)</span>
+                                        <span class="text-emerald-600 font-semibold">PERCUMA</span>
+                                    </div>
+                                    <div class="flex justify-between border-t border-dashed border-slate-200 pt-3">
+                                        <span>Subjumlah Rp</span>
+                                        <span class="font-bold text-slate-800" id="cart-total-rp">Rp 0</span>
+                                    </div>
+                                    <div class="flex justify-between text-yellow-600 font-semibold">
+                                        <span>Nilai Setara Syiling</span>
+                                        <span id="cart-total-points">0 Mata</span>
+                                    </div>
+                                </div>
+
+                                <!-- Pilihan Pembayaran -->
+                                <div class="space-y-3 pt-3 border-t border-slate-100">
+                                    <label class="block text-xs font-bold text-slate-700">Pilih Kaedah Pembayaran:</label>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <label class="border-2 border-teal-500 bg-teal-50/20 rounded-2xl p-3 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 transition" id="pay-opt-rp-container">
+                                            <input type="radio" name="payment_method" value="rupiah" checked class="hidden" onchange="updatePaymentSelection()">
+                                            <i class="fa-solid fa-wallet text-xl text-teal-600 mb-1"></i>
+                                            <span class="text-[10px] font-bold text-teal-900">Baki Rupiah</span>
+                                        </label>
+                                        <label class="border border-slate-200 rounded-2xl p-3 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 transition" id="pay-opt-points-container">
+                                            <input type="radio" name="payment_method" value="koin" class="hidden" onchange="updatePaymentSelection()">
+                                            <i class="fa-solid fa-coins text-xl text-yellow-500 mb-1"></i>
+                                            <span class="text-[10px] font-bold text-slate-700">Syiling Ganjaran</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <button onclick="checkoutCart()" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3.5 rounded-2xl transition shadow-md flex items-center justify-center space-x-2 text-xs">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span>Selesaikan Pembelian</span>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!-- C. SUB-HALAMAN: MUAT NAIK KARYA BAHARU -->
+                    <section id="sub-upload" class="hidden max-w-2xl mx-auto">
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-3 shadow-inner">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-800">Muat Naik Produk/Karya Baharu</h3>
+                                <p class="text-xs text-slate-500 mt-1">Isi borang di bawah untuk menambah hasil kraf tangan anda ke dalam katalog kedai.</p>
+                            </div>
+
+                            <form id="upload-form" onsubmit="handleUpload(event)" class="space-y-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Nama Karya -->
+                                    <div class="space-y-1">
+                                        <label class="block text-xs font-bold text-slate-700">Nama Karya / Produk</label>
+                                        <input type="text" id="up-name" required placeholder="Contoh: Beg Noken Jerami" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-3 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white text-slate-800">
+                                    </div>
+                                    <!-- Kategori -->
+                                    <div class="space-y-1">
+                                        <label class="block text-xs font-bold text-slate-700">Kategori</label>
+                                        <select id="up-category" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-3 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white text-slate-800">
+                                            <option value="Kerajinan">Kraf Tangan</option>
+                                            <option value="Seni Lukis">Seni Lukis</option>
+                                            <option value="Makanan & Minuman">Makanan & Minuman</option>
+                                            <option value="Pakaian">Pakaian</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Harga Rupiah -->
+                                    <div class="space-y-1">
+                                        <label class="block text-xs font-bold text-slate-700">Harga (Rupiah)</label>
+                                        <input type="number" id="up-price" required min="1000" placeholder="Contoh: 150000" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-3 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white text-slate-800" oninput="syncPointsEquivalent()">
+                                    </div>
+                                    <!-- Setara Mata Ganjaran -->
+                                    <div class="space-y-1">
+                                        <label class="block text-xs font-bold text-slate-700">Nilai Setara Syiling Ganjaran</label>
+                                        <input type="number" id="up-points" readonly class="w-full bg-slate-100 border border-slate-200 rounded-xl py-2.5 px-3 text-xs text-slate-500 font-bold" placeholder="Kiraan automatik">
+                                    </div>
+                                </div>
+
+                                <!-- Pencipta -->
+                                <div class="space-y-1">
+                                    <label class="block text-xs font-bold text-slate-700">Nama Pelajar Pembuat Karya</label>
+                                    <input type="text" id="up-creator" required placeholder="Contoh: Ledrik Otniel, Jems, Yan" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-3 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white text-slate-800">
+                                </div>
+
+                                <!-- Penerangan -->
+                                <div class="space-y-1">
+                                    <label class="block text-xs font-bold text-slate-700">Penerangan Ringkas Karya</label>
+                                    <textarea id="up-desc" rows="3" required placeholder="Ceritakan bahan pembuatan karya, falsafah di sebaliknya, dan tempoh masa pembuatannya..." class="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 px-3 text-xs focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white text-slate-800"></textarea>
+                                </div>
+
+                                <!-- Input Gambar -->
+                                <div class="space-y-1">
+                                    <label class="block text-xs font-bold text-slate-700">Foto Karya/Produk</label>
+                                    <div class="flex items-center justify-center w-full">
+                                        <label class="flex flex-col items-center justify-center w-full h-32 border-2 border-slate-200 border-dashed rounded-xl cursor-pointer hover:bg-slate-50 transition" id="image-dropzone">
+                                            <div class="flex flex-col items-center justify-center pt-5 pb-6 text-center px-4">
+                                                <i class="fa-solid fa-image text-2xl text-slate-400 mb-1" id="upload-icon-status"></i>
+                                                <p class="text-xs text-slate-500 font-medium" id="upload-text-status">Klik untuk memuat naik foto karya pelajar</p>
+                                                <p class="text-[10px] text-slate-400 mt-0.5">Saranan resolusi sederhana untuk kelajuan paparan</p>
+                                            </div>
+                                            <input type="file" id="up-image-file" accept="image/*" class="hidden" onchange="previewImageUpload(event)">
+                                        </label>
+                                    </div>
+                                    <!-- Pratonton Gambar Kecil -->
+                                    <div id="image-preview-container" class="hidden flex items-center justify-between bg-teal-50/50 p-3 rounded-2xl border border-teal-100">
+                                        <div class="flex items-center space-x-3">
+                                            <img id="img-preview" src="#" alt="Pratonton" class="w-12 h-12 object-cover rounded-xl border border-slate-200">
+                                            <div>
+                                                <p class="text-[11px] font-bold text-slate-800" id="preview-filename">karya-pelajar.jpg</p>
+                                                <p class="text-[9px] text-emerald-600 font-medium">Sedia Dimuat Naik</p>
+                                            </div>
+                                        </div>
+                                        <button type="button" onclick="cancelImagePreview()" class="text-slate-400 hover:text-rose-500"><i class="fa-solid fa-circle-xmark"></i></button>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 rounded-xl transition duration-300 shadow-md flex items-center justify-center space-x-2 text-xs">
+                                    <i class="fa-solid fa-file-export"></i>
+                                    <span>Terbitkan ke Kedai</span>
+                                </button>
+                            </form>
+                        </div>
+                    </section>
+
+
+                    <!-- D. SUB-HALAMAN: SEJARAH TRANSAKSI -->
+                    <section id="sub-transaksi" class="hidden space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-slate-800">Sejarah Transaksi Jual Beli</h3>
+                            <span class="text-xs text-slate-400 font-medium">Menunjukkan transaksi terkini</span>
+                        </div>
+
+                        <!-- Kad Senarai Sejarah -->
+                        <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left text-xs border-collapse">
+                                    <thead>
+                                        <tr class="bg-slate-50 text-slate-500 uppercase tracking-wider font-semibold border-b border-slate-100">
+                                            <th class="p-4">ID Transaksi</th>
+                                            <th class="p-4">Tarikh Pembelian</th>
+                                            <th class="p-4">Senarai Item</th>
+                                            <th class="p-4">Kaedah Bayar</th>
+                                            <th class="p-4">Jumlah Bayar</th>
+                                            <th class="p-4">Status Penghantar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="transaksi-table-body">
+                                        <!-- Diisi secara dinamik -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Keadaan Tiada Transaksi -->
+                            <div id="no-transaksi-state" class="hidden p-12 text-center flex flex-col items-center">
+                                <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 text-xl mb-3">
+                                    <i class="fa-solid fa-receipt"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-700">Belum Ada Transaksi</h4>
+                                <p class="text-xs text-slate-400 max-w-sm mt-1">Anda belum melakukan sebarang pembelian. Sila layari katalog produk untuk memilih karya pelajar.</p>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!-- E. SUB-HALAMAN: MENGENAI PROGRAM -->
+                    <section id="sub-tentang" class="hidden max-w-4xl mx-auto space-y-8">
+                        <!-- Banner Pengepala -->
+                        <div class="wave-bg text-white p-8 rounded-3xl shadow-md relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+                            <div class="space-y-3 max-w-lg">
+                                <span class="bg-yellow-400 text-sky-950 font-bold px-3 py-1 rounded-full text-[10px] tracking-wider uppercase">Mengenai Keusahawanan</span>
+                                <h3 class="text-2xl md:text-3xl font-extrabold">Smart Child Aid Papua</h3>
+                                <p class="text-xs text-teal-100 leading-relaxed font-light">
+                                    Satu inisiatif berasaskan pendidikan inklusif di Papua yang bertujuan untuk memupuk kreativiti pelajar dalam bidang seni lukisan, pembuatan noken, pakaian, hingga masakan tempatan berdaya jual tinggi.
+                                </p>
+                            </div>
+                            <img src="image_e0dea0.png" alt="Logo Child Aid" class="w-24 h-24 object-contain bg-white rounded-full p-2" onerror="this.onerror=null; this.style.display='none';">
+                        </div>
+
+                        <!-- 3 Pilar -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+                                <div class="w-10 h-10 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-lg"><i class="fa-solid fa-graduation-cap"></i></div>
+                                <h4 class="font-bold text-slate-800 text-sm">Pendidikan Berdikari</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Pelajar bukan sahaja mempelajari teori akademik, malah dilatih secara langsung menghasilkan kraf tangan beg noken, kriya, dan lukisan tempatan.</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+                                <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-lg"><i class="fa-solid fa-coins"></i></div>
+                                <h4 class="font-bold text-slate-800 text-sm">Gamifikasi Syiling Ganjaran</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Setiap tugas harian, tahap disiplin asrama, serta pencapaian sekolah akan diberikan ganjaran mata syiling yang boleh digunakan untuk membeli karya rakan-rakan.</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+                                <div class="w-10 h-10 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center text-lg"><i class="fa-solid fa-seedling"></i></div>
+                                <h4 class="font-bold text-slate-800 text-sm">Aliran Tunai Asrama</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">Setiap rupiah yang dibayar oleh pelanggan luar akan disalurkan semula sebagai tabung asrama untuk bahan mentah serta makanan sihat pelajar.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                </main>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MODAL & NOTIFIKASI TOAST TERSUAI (Tanpa Amaran Tetingkap Timbul) -->
+    <!-- ============================================== -->
+    <!-- Banner Toast -->
+    <div id="toast-banner" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition duration-500 pointer-events-none bg-slate-900 text-white rounded-2xl px-5 py-3.5 shadow-xl flex items-center space-x-3 max-w-sm">
+        <div id="toast-icon" class="w-8 h-8 rounded-full flex items-center justify-center text-white shrink-0">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <p id="toast-msg" class="text-xs font-semibold leading-snug"></p>
+    </div>
+
+    <!-- Modal Perincian Produk -->
+    <div id="product-detail-modal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden border border-slate-100 transform scale-95 opacity-0 transition duration-300" id="modal-content-container">
+            <div class="flex flex-col md:flex-row">
+                <!-- Sisi Gambar -->
+                <div class="md:w-1/2 relative bg-slate-50 min-h-[220px]">
+                    <img id="modal-p-img" src="#" alt="Detail Karya" class="w-full h-full object-cover">
+                    <span id="modal-p-category" class="absolute top-4 left-4 bg-teal-500 text-white font-bold text-[9px] px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">Kategori</span>
+                </div>
+                <!-- Sisi Perincian -->
+                <div class="md:w-1/2 p-6 flex flex-col justify-between space-y-6">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <h3 id="modal-p-name" class="text-lg font-bold text-slate-800 leading-snug">Nama Produk Karya Pelajar</h3>
+                            <button onclick="closeProductDetailModal()" class="text-slate-400 hover:text-slate-600 transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+                        </div>
+                        <p class="text-[10px] text-teal-600 font-semibold" id="modal-p-creator">Karya: Pelajar Kreatif</p>
+                        <p id="modal-p-desc" class="text-xs text-slate-500 leading-relaxed max-h-32 overflow-y-auto">Penerangan karya pelajar.</p>
+                    </div>
+
+                    <div class="space-y-4 pt-4 border-t border-slate-100">
+                        <div class="flex justify-between items-baseline">
+                            <div class="space-y-0.5">
+                                <span class="text-[10px] text-slate-400 block">Harga</span>
+                                <span id="modal-p-price-rp" class="text-lg font-extrabold text-teal-600">Rp 0</span>
+                            </div>
+                            <span id="modal-p-price-pts" class="text-xs font-bold text-yellow-600 bg-yellow-50 px-3 py-1 rounded-xl border border-yellow-100">0 Mata</span>
+                        </div>
+
+                        <div class="flex space-x-3">
+                            <button onclick="addCurrentProductToCart()" class="flex-grow bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 rounded-2xl text-xs transition shadow-md flex items-center justify-center space-x-1.5">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                <span>Tambah ke Troli</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- LOGIK / KEADAAN APLIKASI JAVASCRIPT -->
+    <!-- ============================================== -->
+    <script>
+        // Data Contoh Awal untuk Karya Pelajar (Disimpan di localStorage jika diedit)
+        const MOCK_PRODUCTS = [
+            {
+                id: "p1",
+                name: "Beg Noken Asli Pergunungan Arfak",
+                category: "Kerajinan",
+                price: 150000,
+                points: 150,
+                creator: "Ledrik Otniel Mamarodi",
+                desc: "Noken tradisional khas Papua yang ditenun menggunakan gentian kayu asli dari pergunungan Arfak. Sangat kukuh, elegan, dan mesra alam.",
+                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                id: "p2",
+                name: "Lukisan Kanvas Burung Cenderawasih",
+                category: "Seni Lukis",
+                price: 350000,
+                points: 350,
+                creator: "Yan Mandenas",
+                desc: "Seni lukisan ekspresif bertemakan fauna endemik Papua. Dilukis menggunakan cat minyak berkualiti tinggi di atas kanvas bersaiz 40x40 cm.",
+                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                id: "p3",
+                name: "Kaos Sablon Motif Ukiran Kamoro",
+                category: "Pakaian",
+                price: 120000,
+                points: 120,
+                creator: "Jems Pigai",
+                desc: "Baju T-shirt kapas premium combad 30s dengan cetakan reka bentuk seni ukiran asli suku Kamoro. Selesa dipakai dan bernuansa etnik moden.",
+                image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=400&q=80"
+            },
+            {
+                id: "p4",
+                name: "Serbuk Kopi Moanemani Khas Dogiyai",
+                category: "Makanan & Minuman",
+                price: 80000,
+                points: 80,
+                creator: "Kristian Bobii",
+                desc: "Kopi arabika organik pilihan yang diproses secara tradisional dari ladang subur Moanemani, Wilayah Dogiyai, Papua.",
+                image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=400&q=80"
+            }
+        ];
+
+        // Pengurusan Keadaan Aplikasi
+        let appState = {
+            activePage: "landing", // landing | login | dashboard
+            activeSubPage: "katalog", // katalog | keranjang | upload | transaksi | tentang
+            currentUser: null,
+            products: [],
+            cart: [],
+            transactions: []
+        };
+
+        // Produk Terpilih untuk Modal Perincian
+        let activeSelectedProduct = null;
+
+        // Keadaan Carta Semasa
+        let currentChartMode = 'omset';
+
+        // Mula Aplikasi semasa Laman Dimuatkan
+        window.onload = function() {
+            initAppState();
+            renderProducts();
+            toggleChartData('omset');
+        };
+
+        // Menyediakan Data Berdasarkan Sesi / Penyimpanan Tempatan
+        function initAppState() {
+            // Muat Produk
+            const storedProducts = localStorage.getItem("smartcap_products");
+            if (storedProducts) {
+                appState.products = JSON.parse(storedProducts);
+            } else {
+                appState.products = [...MOCK_PRODUCTS];
+                localStorage.setItem("smartcap_products", JSON.stringify(appState.products));
+            }
+
+            // Muat Troli
+            const storedCart = localStorage.getItem("smartcap_cart");
+            if (storedCart) {
+                appState.cart = JSON.parse(storedCart);
+                updateCartBadge();
+            }
+
+            // Muat Transaksi
+            const storedTx = localStorage.getItem("smartcap_tx");
+            if (storedTx) {
+                appState.transactions = JSON.parse(storedTx);
+            } else {
+                // Transaksi Lalai Awal
+                appState.transactions = [
+                    {
+                        id: "TX-993021",
+                        date: "04 Jun 2026",
+                        items: "Kopi Moanemani x1",
+                        method: "koin",
+                        total: 80,
+                        status: "Menunggu Kurir"
+                    },
+                    {
+                        id: "TX-992485",
+                        date: "01 Jun 2026",
+                        items: "Tas Noken Arfak x1",
+                        method: "rupiah",
+                        total: 150000,
+                        status: "Selesai"
+                    }
+                ];
+                localStorage.setItem("smartcap_tx", JSON.stringify(appState.transactions));
+            }
+
+            // Log Masuk Automatik Sesi Terdahulu
+            const storedUser = localStorage.getItem("smartcap_logged_user");
+            if (storedUser) {
+                appState.currentUser = JSON.parse(storedUser);
+                applyUserSessionToUI();
+                switchPage("dashboard");
+            }
+        }
+
+        // Navigasi Antara Laman Utama
+        function switchPage(pageId) {
+            // Sembunyikan semua halaman utama
+            document.getElementById("page-landing").classList.add("hidden");
+            document.getElementById("page-login").classList.add("hidden");
+            document.getElementById("page-dashboard").classList.add("hidden");
+
+            // Tunjukkan halaman sasaran
+            if (pageId === "landing") {
+                document.getElementById("page-landing").classList.remove("hidden");
+            } else if (pageId === "login") {
+                document.getElementById("page-login").classList.remove("hidden");
+            } else if (pageId === "dashboard") {
+                if (!appState.currentUser) {
+                    // Jika belum masuk, paksa masuk ke halaman log masuk
+                    document.getElementById("page-login").classList.remove("hidden");
+                    showToast("Sila log masuk terlebih dahulu!", "error");
+                    return;
+                }
+                document.getElementById("page-dashboard").classList.remove("hidden");
+                // Set Semula ke Sub-Halaman Katalog
+                switchSubPage("katalog");
+            }
+            appState.activePage = pageId;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Navigasi Sub-Halaman di Dalam Dasbor Utama
+        function switchSubPage(subPageId) {
+            // Sembunyikan semua sub-halaman
+            document.getElementById("sub-katalog").classList.add("hidden");
+            document.getElementById("sub-keranjang").classList.add("hidden");
+            document.getElementById("sub-upload").classList.add("hidden");
+            document.getElementById("sub-transaksi").classList.add("hidden");
+            document.getElementById("sub-tentang").classList.add("hidden");
+
+            // Nyahaktifkan semua butang menu
+            const menuButtons = ["katalog", "keranjang", "upload", "transaksi", "tentang"];
+            menuButtons.forEach(btn => {
+                const el = document.getElementById(`btn-menu-${btn}`);
+                if (el) {
+                    el.className = "w-full flex items-center justify-between px-4 py-3 rounded-xl transition text-sm font-medium hover:bg-slate-800 hover:text-white text-slate-400";
+                }
+            });
+
+            // Aktifkan sub-page sasaran
+            const targetSub = document.getElementById(`sub-${subPageId}`);
+            if (targetSub) {
+                targetSub.classList.remove("hidden");
+            }
+
+            // Beri sorotan pada butang menu terpilih
+            const activeBtn = document.getElementById(`btn-menu-${subPageId}`);
+            if (activeBtn) {
+                activeBtn.className = "w-full flex items-center justify-between px-4 py-3 rounded-xl transition text-sm font-medium bg-slate-800 text-white";
+            }
+
+            appState.activeSubPage = subPageId;
+
+            // Cetus kemas kini untuk halaman khusus
+            if (subPageId === "keranjang") {
+                renderCartList();
+            } else if (subPageId === "transaksi") {
+                renderTransactions();
+            }
+
+            // Tutup menu sisi mudah alih jika skrin kecil setelah memilih menu
+            if (window.innerWidth < 768) {
+                const sidebar = document.getElementById("sidebar-menu");
+                sidebar.classList.add("hidden");
+                sidebar.classList.remove("flex");
+            }
+        }
+
+        // Toggle Navbar Mudah Alih di Laman Utama
+        function toggleMobileNav() {
+            const nav = document.getElementById("mobile-nav");
+            nav.classList.toggle("hidden");
+        }
+
+        // Toggle Menu Sisi di Halaman Dashboard (Paparan Mudah Alih)
+        function toggleSidebarMenu() {
+            const sidebar = document.getElementById("sidebar-menu");
+            if (sidebar.classList.contains("hidden")) {
+                sidebar.classList.remove("hidden");
+                sidebar.classList.add("flex");
+            } else {
+                sidebar.classList.add("hidden");
+                sidebar.classList.remove("flex");
+            }
+        }
+
+        // Toggle Paparan Kata Laluan
+        let passwordVisible = false;
+        function togglePasswordVisibility() {
+            const pwdInput = document.getElementById("login-password");
+            const pwdIcon = document.getElementById("togglePasswordIcon");
+            passwordVisible = !passwordVisible;
+            if (passwordVisible) {
+                pwdInput.type = "text";
+                pwdIcon.className = "fa-solid fa-eye";
+            } else {
+                pwdInput.type = "password";
+                pwdIcon.className = "fa-solid fa-eye-slash";
+            }
+        }
+
+        // Menguruskan Proses Log Masuk
+        function handleLogin(event) {
+            event.preventDefault();
+            const usernameInput = document.getElementById("login-username").value.trim();
+            const passwordInput = document.getElementById("login-password").value;
+
+            // Pengesahan Akaun Asrama Demo (Contoh: Ledrik / asrama)
+            if (usernameInput.toLowerCase() === "ledrik" && passwordInput === "asrama") {
+                // Cipta Objek Sesi Pengguna
+                const userObj = {
+                    username: "Ledrik",
+                    name: "Ledrik Otniel Mamarodi",
+                    idPelanggan: "573202205",
+                    points: 1250,
+                    balance: 450000,
+                    initials: "LO"
+                };
+                
+                appState.currentUser = userObj;
+                localStorage.setItem("smartcap_logged_user", JSON.stringify(userObj));
+                
+                // Bersihkan Input
+                document.getElementById("login-username").value = "";
+                document.getElementById("login-password").value = "";
+                document.getElementById("login-error").classList.add("hidden");
+
+                // Kemas kini paparan & masuk dashboard
+                applyUserSessionToUI();
+                switchPage("dashboard");
+                showToast("Selamat datang ke Market Boss Hugo!", "success");
+            } else {
+                // Tunjukkan ralat
+                document.getElementById("login-error").classList.remove("hidden");
+            }
+        }
+
+        // Log Keluar Sesi Akaun
+        function handleLogout() {
+            appState.currentUser = null;
+            localStorage.removeItem("smartcap_logged_user");
+            showToast("Anda telah log keluar daripada aplikasi.", "info");
+            switchPage("landing");
+        }
+
+        // Penyelarasan Sesi Pengguna ke Paparan Dashboard
+        function applyUserSessionToUI() {
+            if (!appState.currentUser) return;
+            const u = appState.currentUser;
+            document.getElementById("user-initials").innerText = u.initials;
+            document.getElementById("user-display-name").innerText = u.name;
+            document.getElementById("header-user-name").innerText = u.name;
+            
+            // Format mata ganjaran & mata wang
+            document.getElementById("user-points").innerText = u.points.toLocaleString('id-ID') + " Mata";
+            document.getElementById("user-balance").innerText = "Rp " + u.balance.toLocaleString('id-ID');
+        }
+
+
+        // ==============================================
+        // FITUR GRAFIK INTERAKTIF (LAMAN UTAMA)
+        // ==============================================
+        function toggleChartData(type) {
+            currentChartMode = type;
+            const btnOmset = document.getElementById("btn-chart-omset");
+            const btnKarya = document.getElementById("btn-chart-karya");
+            const lblTitle = document.getElementById("chart-title-lbl");
+
+            if (type === 'omset') {
+                btnOmset.className = "px-2 py-0.5 rounded bg-teal-500 text-white font-bold transition text-[9px]";
+                btnKarya.className = "px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-bold transition text-[9px]";
+                lblTitle.innerText = "Hasil Jualan (2026)";
+
+                // Kemas kini saiz dan nilai bar (Rp)
+                animateBar("bar-1", "bar-val-1", 40, "120k");
+                animateBar("bar-2", "bar-val-2", 70, "240k");
+                animateBar("bar-3", "bar-val-3", 90, "350k");
+                animateBar("bar-4", "bar-val-4", 55, "195k");
+            } else {
+                btnOmset.className = "px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-bold transition text-[9px]";
+                btnKarya.className = "px-2 py-0.5 rounded bg-teal-500 text-white font-bold transition text-[9px]";
+                lblTitle.innerText = "Karya Terjual (Unit)";
+
+                // Kemas kini saiz dan nilai bar (Unit)
+                animateBar("bar-1", "bar-val-1", 85, "12 Unit");
+                animateBar("bar-2", "bar-val-2", 50, "8 Unit");
+                animateBar("bar-3", "bar-val-3", 65, "10 Unit");
+                animateBar("bar-4", "bar-val-4", 40, "6 Unit");
+            }
+        }
+
+        function animateBar(barId, valId, heightPct, textVal) {
+            const bar = document.getElementById(barId);
+            const label = document.getElementById(valId);
+            if (bar && label) {
+                bar.style.height = heightPct + "%";
+                label.innerText = textVal;
+            }
+        }
+
+
+        // ==============================================
+        // FITUR KATALOG PRODUK & CARIAN
+        // ==============================================
+        let currentKategoriFilter = "semua";
+
+        // Memaparkan Katalog Karya Pelajar
+        function renderProducts() {
+            const grid = document.getElementById("produk-grid");
+            if (!grid) return;
+            grid.innerHTML = "";
+
+            const searchQuery = document.getElementById("search-produk").value.toLowerCase();
+
+            const filtered = appState.products.filter(p => {
+                const matchKategori = (currentKategoriFilter === "semua" || p.category === currentKategoriFilter);
+                const matchSearch = p.name.toLowerCase().includes(searchQuery) || p.creator.toLowerCase().includes(searchQuery);
+                return matchKategori && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-store-slash text-4xl text-slate-300 mb-3 animate-bounce"></i>
+                        <h4 class="font-bold text-slate-700">Karya Tidak Ditemui</h4>
+                        <p class="text-xs text-slate-400 mt-1">Cuba kata kunci carian atau kategori lain.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:border-teal-100 transition duration-300 overflow-hidden flex flex-col justify-between";
+                
+                card.innerHTML = `
+                    <div>
+                        <!-- Gambar Karya -->
+                        <div class="h-44 relative bg-slate-100 overflow-hidden group">
+                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x300?text=Karya+Pelajar';">
+                            <span class="absolute top-3 left-3 bg-teal-500 text-white font-bold text-[9px] px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                                ${p.category}
+                            </span>
+                        </div>
+                        
+                        <!-- Perincian Ringkas -->
+                        <div class="p-5 space-y-2">
+                            <h4 class="font-bold text-slate-800 text-sm leading-snug line-clamp-2 h-10">${p.name}</h4>
+                            <p class="text-[10px] text-teal-600 font-semibold flex items-center">
+                                <i class="fa-solid fa-palette mr-1.5"></i> Karya: ${p.creator}
+                            </p>
+                            <p class="text-slate-500 text-[11px] line-clamp-2 leading-relaxed">${p.desc}</p>
+                        </div>
+                    </div>
+
+                    <!-- Pembayaran & Butang Beli -->
+                    <div class="p-5 pt-0 border-t border-slate-50 mt-2 space-y-4">
+                        <div class="flex justify-between items-baseline pt-3">
+                            <div class="space-y-0.5">
+                                <span class="text-[9px] text-slate-400 block">Harga Karya</span>
+                                <span class="text-sm font-extrabold text-teal-600">Rp ${p.price.toLocaleString('id-ID')}</span>
+                            </div>
+                            <span class="text-[10px] text-yellow-600 font-bold bg-yellow-50 px-2 py-0.5 rounded-lg border border-yellow-100">
+                                <i class="fa-solid fa-coins mr-1"></i> ${p.points} Mata
+                            </span>
+                        </div>
+
+                        <div class="flex space-x-2">
+                            <button onclick="openProductDetail('${p.id}')" class="flex-grow bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-semibold py-2 rounded-xl text-xs transition flex items-center justify-center space-x-1">
+                                <span>Perincian</span>
+                            </button>
+                            <button onclick="instantAddToCart('${p.id}')" class="bg-teal-500 hover:bg-teal-600 text-white p-2.5 rounded-xl text-xs transition flex items-center justify-center shadow-sm">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Tapis Kategori Laman
+        function filterKategori(kategori) {
+            currentKategoriFilter = kategori;
+            
+            // Tukar Gaya Tab Aktif
+            const container = document.getElementById("kategori-filter-container");
+            const buttons = container.getElementsByTagName("button");
+            
+            for (let btn of buttons) {
+                if (btn.innerText.toLowerCase().includes(kategori.toLowerCase().substring(0, 5)) || (kategori === "semua" && btn.innerText.includes("Semua"))) {
+                    btn.className = "btn-kat px-4 py-2 rounded-2xl text-xs font-semibold bg-teal-500 text-white transition";
+                } else {
+                    btn.className = "btn-kat px-4 py-2 rounded-2xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition";
+                }
+            }
+
+            renderProducts();
+        }
+
+        // Mengendalikan Isyarat Carian
+        function handleSearch() {
+            renderProducts();
+        }
+
+
+        // ==============================================
+        // FITUR DETAIL MODAL KARYA
+        // ==============================================
+        function openProductDetail(productId) {
+            const p = appState.products.find(item => item.id === productId);
+            if (!p) return;
+
+            activeSelectedProduct = p;
+
+            // Isi Data Laman Modal
+            document.getElementById("modal-p-img").src = p.image;
+            document.getElementById("modal-p-category").innerText = p.category;
+            document.getElementById("modal-p-name").innerText = p.name;
+            document.getElementById("modal-p-creator").innerHTML = `<i class="fa-solid fa-palette mr-1"></i> Karya: ${p.creator}`;
+            document.getElementById("modal-p-desc").innerText = p.desc;
+            document.getElementById("modal-p-price-rp").innerText = "Rp " + p.price.toLocaleString('id-ID');
+            document.getElementById("modal-p-price-pts").innerHTML = `<i class="fa-solid fa-coins mr-1"></i> ${p.points} Mata`;
+
+            // Aktifkan Modal
+            const modal = document.getElementById("product-detail-modal");
+            const modalContent = document.getElementById("modal-content-container");
+            modal.classList.remove("hidden");
+            setTimeout(() => {
+                modalContent.classList.remove("scale-95", "opacity-0");
+                modalContent.classList.add("scale-100", "opacity-100");
+            }, 50);
+        }
+
+        function closeProductDetailModal() {
+            const modal = document.getElementById("product-detail-modal");
+            const modalContent = document.getElementById("modal-content-container");
+            
+            modalContent.classList.remove("scale-100", "opacity-100");
+            modalContent.classList.add("scale-95", "opacity-0");
+            setTimeout(() => {
+                modal.classList.add("hidden");
+                activeSelectedProduct = null;
+            }, 300);
+        }
+
+        // Tambah ke troli dari paparan modal
+        function addCurrentProductToCart() {
+            if (activeSelectedProduct) {
+                instantAddToCart(activeSelectedProduct.id);
+                closeProductDetailModal();
+            }
+        }
+
+
+        // ==============================================
+        // FITUR KERANJANG BELANJA (SISTEM TROLI)
+        // ==============================================
+        function instantAddToCart(productId) {
+            const p = appState.products.find(item => item.id === productId);
+            if (!p) return;
+
+            // Semak kewujudan produk di dalam troli
+            const exist = appState.cart.find(item => item.id === productId);
+            if (exist) {
+                exist.qty += 1;
+            } else {
+                appState.cart.push({
+                    id: p.id,
+                    name: p.name,
+                    price: p.price,
+                    points: p.points,
+                    image: p.image,
+                    creator: p.creator,
+                    qty: 1
+                });
+            }
+
+            localStorage.setItem("smartcap_cart", JSON.stringify(appState.cart));
+            updateCartBadge();
+            showToast(`${p.name} ditambah ke dalam troli!`, "success");
+        }
+
+        function updateCartBadge() {
+            const count = appState.cart.reduce((total, item) => total + item.qty, 0);
+            document.getElementById("cart-badge-count").innerText = count;
+        }
+
+        // Memaparkan Senarai Troli Beli-belah
+        function renderCartList() {
+            const container = document.getElementById("cart-items-list");
+            if (!container) return;
+            container.innerHTML = "";
+
+            if (appState.cart.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white rounded-3xl p-12 text-center flex flex-col items-center justify-center border border-slate-100 shadow-sm">
+                        <i class="fa-solid fa-cart-flatbed text-4xl text-slate-300 mb-3 animate-pulse"></i>
+                        <h4 class="font-bold text-slate-700">Troli Masih Kosong</h4>
+                        <p class="text-xs text-slate-400 mt-1 max-w-xs leading-relaxed">Anda belum menambahkan sebarang karya seni. Jom lawati halaman katalog!</p>
+                        <button onclick="switchSubPage('katalog')" class="mt-4 bg-teal-500 text-white font-bold px-6 py-2 rounded-xl text-xs hover:bg-teal-600 transition shadow-sm">Buka Katalog</button>
+                    </div>
+                `;
+                // Set nilai sifar
+                document.getElementById("cart-raw-subtotal").innerText = "Rp 0";
+                document.getElementById("cart-total-rp").innerText = "Rp 0";
+                document.getElementById("cart-total-points").innerText = "0 Mata";
+                return;
+            }
+
+            appState.cart.forEach(item => {
+                const row = document.createElement("div");
+                row.className = "bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between gap-4";
+                row.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl border border-slate-200 shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/100';">
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-xs sm:text-sm line-clamp-1">${item.name}</h4>
+                            <p class="text-[10px] text-teal-600 font-semibold mb-1">Karya: ${item.creator}</p>
+                            <div class="flex items-center space-x-2 text-xs">
+                                <span class="font-bold text-teal-600">Rp ${item.price.toLocaleString('id-ID')}</span>
+                                <span class="text-slate-300">•</span>
+                                <span class="text-yellow-600 font-bold">${item.points} Mata</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kuantiti & Butang Padam -->
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center border border-slate-200 rounded-xl bg-slate-50 overflow-hidden shrink-0">
+                            <button onclick="adjustCartQty('${item.id}', -1)" class="px-2.5 py-1 text-slate-500 hover:bg-slate-200 transition font-bold text-xs">-</button>
+                            <span class="px-3 py-1 font-bold text-xs text-slate-800 select-none">${item.qty}</span>
+                            <button onclick="adjustCartQty('${item.id}', 1)" class="px-2.5 py-1 text-slate-500 hover:bg-slate-200 transition font-bold text-xs">+</button>
+                        </div>
+                        <button onclick="removeFromCart('${item.id}')" class="text-slate-400 hover:text-rose-500 transition shrink-0"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            calculateCartSummary();
+        }
+
+        // Selaraskan Kuantiti Item
+        function adjustCartQty(itemId, amount) {
+            const item = appState.cart.find(item => item.id === itemId);
+            if (!item) return;
+
+            item.qty += amount;
+            if (item.qty <= 0) {
+                // Padam jika kurang daripada 1
+                appState.cart = appState.cart.filter(i => i.id !== itemId);
+            }
+
+            localStorage.setItem("smartcap_cart", JSON.stringify(appState.cart));
+            updateCartBadge();
+            renderCartList();
+        }
+
+        // Padam Satu Item dari Troli
+        function removeFromCart(itemId) {
+            appState.cart = appState.cart.filter(item => item.id !== itemId);
+            localStorage.setItem("smartcap_cart", JSON.stringify(appState.cart));
+            updateCartBadge();
+            renderCartList();
+            showToast("Item berjaya dikeluarkan daripada troli.", "info");
+        }
+
+        // Padam Keseluruhan Isi Troli
+        function clearCart() {
+            if (appState.cart.length === 0) return;
+            appState.cart = [];
+            localStorage.setItem("smartcap_cart", JSON.stringify(appState.cart));
+            updateCartBadge();
+            renderCartList();
+            showToast("Troli beli-belah dikosongkan.", "info");
+        }
+
+        // Pengiraan Jumlah Bayaran Semasa
+        let totalRawSubtotal = 0;
+        let totalPointsSubtotal = 0;
+
+        function calculateCartSummary() {
+            totalRawSubtotal = appState.cart.reduce((total, item) => total + (item.price * item.qty), 0);
+            totalPointsSubtotal = appState.cart.reduce((total, item) => total + (item.points * item.qty), 0);
+
+            document.getElementById("cart-raw-subtotal").innerText = "Rp " + totalRawSubtotal.toLocaleString('id-ID');
+            document.getElementById("cart-total-rp").innerText = "Rp " + totalRawSubtotal.toLocaleString('id-ID');
+            document.getElementById("cart-total-points").innerText = totalPointsSubtotal.toLocaleString('id-ID') + " Mata";
+        }
+
+        // Penyelarasan Kaedah Bayar di Paparan UI
+        let activePaymentMethod = "rupiah";
+        function updatePaymentSelection() {
+            const radios = document.getElementsByName("payment_method");
+            for (let r of radios) {
+                if (r.checked) {
+                    activePaymentMethod = r.value;
+                }
+            }
+
+            const rpContainer = document.getElementById("pay-opt-rp-container");
+            const ptsContainer = document.getElementById("pay-opt-points-container");
+
+            if (activePaymentMethod === "rupiah") {
+                rpContainer.className = "border-2 border-teal-500 bg-teal-50/20 rounded-2xl p-3 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 transition";
+                ptsContainer.className = "border border-slate-200 rounded-2xl p-3 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 transition";
+            } else {
+                rpContainer.className = "border border-slate-200 rounded-2xl p-3 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 transition";
+                ptsContainer.className = "border-2 border-yellow-500 bg-yellow-50/20 rounded-2xl p-3 flex flex-col items-center justify-center cursor-pointer hover:bg-slate-50 transition";
+            }
+        }
+
+        // Proses Selesaikan Pembelian (Checkout)
+        function checkoutCart() {
+            if (appState.cart.length === 0) {
+                showToast("Troli anda masih kosong!", "error");
+                return;
+            }
+
+            const user = appState.currentUser;
+            if (!user) return;
+
+            // Semak Had Baki Mengikut Kaedah Pembayaran
+            if (activePaymentMethod === "rupiah") {
+                if (user.balance < totalRawSubtotal) {
+                    showToast("Maaf, baki rupiah anda tidak mencukupi untuk pembayaran ini.", "error");
+                    return;
+                }
+                // Tolak Baki Rupiah
+                user.balance -= totalRawSubtotal;
+            } else {
+                if (user.points < totalPointsSubtotal) {
+                    showToast("Maaf, syiling ganjaran anda tidak mencukupi untuk ditukar.", "error");
+                    return;
+                }
+                // Tolak Syiling Ganjaran
+                user.points -= totalPointsSubtotal;
+            }
+
+            // Simpan Data Pengguna Baharu
+            appState.currentUser = user;
+            localStorage.setItem("smartcap_logged_user", JSON.stringify(user));
+            applyUserSessionToUI();
+
+            // Cipta Sejarah Transaksi Baharu
+            const txId = "TX-" + Math.floor(100000 + Math.random() * 900000);
+            const today = new Date();
+            const dateStr = today.getDate() + " " + today.toLocaleString('id-ID', { month: 'short' }) + " " + today.getFullYear();
+            
+            // Gabungkan nama barangan
+            const itemSummaries = appState.cart.map(item => `${item.name} x${item.qty}`).join(", ");
+            const paidAmount = (activePaymentMethod === "rupiah") ? totalRawSubtotal : totalPointsSubtotal;
+
+            const newTx = {
+                id: txId,
+                date: dateStr,
+                items: itemSummaries,
+                method: activePaymentMethod,
+                total: paidAmount,
+                status: "Menunggu Kurir"
+            };
+
+            // Tambahkan ke Sejarah Transaksi
+            appState.transactions.unshift(newTx);
+            localStorage.setItem("smartcap_tx", JSON.stringify(appState.transactions));
+
+            // Kosongkan Troli
+            appState.cart = [];
+            localStorage.setItem("smartcap_cart", JSON.stringify(appState.cart));
+            updateCartBadge();
+
+            // Alihkan ke Laman Sejarah Transaksi
+            switchSubPage("transaksi");
+            showToast("Pembelian Berjaya! Penghantar asrama sedang menguruskan karya anda.", "success");
+        }
+
+
+        // ==============================================
+        // FITUR UNGGAH KARYA BARU DENGAN BASE64 IMAGE
+        // ==============================================
+        let tempBase64Image = "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=400&q=80"; // Gambar Sedia Ada
+
+        // Menyelaraskan Pengiraan Syiling Setara (1000 Rupiah = 1 Syiling)
+        function syncPointsEquivalent() {
+            const price = document.getElementById("up-price").value;
+            const pointsInput = document.getElementById("up-points");
+            if (price) {
+                const equivalentPoints = Math.floor(price / 1000);
+                pointsInput.value = equivalentPoints;
+            } else {
+                pointsInput.value = "";
+            }
+        }
+
+        // Pratonton Gambar Karya Menggunakan FileReader
+        function previewImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                tempBase64Image = e.target.result;
+
+                // Memaparkan Bekas Pratonton
+                document.getElementById("image-dropzone").classList.add("hidden");
+                document.getElementById("image-preview-container").classList.remove("hidden");
+                document.getElementById("img-preview").src = tempBase64Image;
+                document.getElementById("preview-filename").innerText = file.name;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Membatalkan Muat Naik Gambar
+        function cancelImagePreview() {
+            tempBase64Image = "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=400&q=80";
+            document.getElementById("up-image-file").value = "";
+            document.getElementById("image-preview-container").classList.add("hidden");
+            document.getElementById("image-dropzone").classList.remove("hidden");
+        }
+
+        // Menguruskan Proses Terbit Produk Baharu
+        function handleUpload(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("up-name").value.trim();
+            const category = document.getElementById("up-category").value;
+            const price = parseInt(document.getElementById("up-price").value);
+            const creator = document.getElementById("up-creator").value.trim();
+            const desc = document.getElementById("up-desc").value.trim();
+            const points = Math.floor(price / 1000);
+
+            // Cipta ID Unik Produk
+            const pId = "p-" + Date.now();
+
+            const newProduct = {
+                id: pId,
+                name: name,
+                category: category,
+                price: price,
+                points: points,
+                creator: creator,
+                desc: desc,
+                image: tempBase64Image
+            };
+
+            // Simpan Keadaan
+            appState.products.unshift(newProduct);
+            localStorage.setItem("smartcap_products", JSON.stringify(appState.products));
+
+            // Set Semula Borang
+            document.getElementById("upload-form").reset();
+            cancelImagePreview();
+
+            // Papar Semula Katalog & Alihkan Halaman
+            renderProducts();
+            switchSubPage("katalog");
+            showToast(`Karya '${name}' berjaya diterbitkan di kedai!`, "success");
+        }
+
+
+        // ==============================================
+        // FITUR RIWAYAT TRANSAKSI
+        // ==============================================
+        function renderTransactions() {
+            const tbody = document.getElementById("transaksi-table-body");
+            const noState = document.getElementById("no-transaksi-state");
+            if (!tbody) return;
+
+            tbody.innerHTML = "";
+
+            if (appState.transactions.length === 0) {
+                noState.classList.remove("hidden");
+                return;
+            } else {
+                noState.classList.add("hidden");
+            }
+
+            appState.transactions.forEach(tx => {
+                const tr = document.createElement("tr");
+                tr.className = "border-b border-slate-100 hover:bg-slate-50 transition";
+                
+                // Menentukan Label Kaedah Bayar
+                let payBadge = "";
+                let amountLabel = "";
+                if (tx.method === "rupiah") {
+                    payBadge = `<span class="bg-teal-50 text-teal-600 px-2.5 py-1 rounded-full text-[10px] font-bold"><i class="fa-solid fa-wallet mr-1"></i> Rupiah</span>`;
+                    amountLabel = `Rp ${tx.total.toLocaleString('id-ID')}`;
+                } else {
+                    payBadge = `<span class="bg-yellow-50 text-yellow-600 px-2.5 py-1 rounded-full text-[10px] font-bold"><i class="fa-solid fa-coins mr-1"></i> Syiling</span>`;
+                    amountLabel = `${tx.total.toLocaleString('id-ID')} Mata`;
+                }
+
+                // Menentukan Label Status Penghantaran
+                let statusBadge = "";
+                if (tx.status === "Selesai") {
+                    statusBadge = `<span class="bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-lg text-[10px] font-bold"><i class="fa-solid fa-circle-check mr-1"></i> Selesai</span>`;
+                } else {
+                    statusBadge = `<span class="bg-amber-50 text-amber-500 px-2 py-0.5 rounded-lg text-[10px] font-bold animate-pulse"><i class="fa-solid fa-truck-ramp-box mr-1"></i> Dihantar</span>`;
+                }
+
+                tr.innerHTML = `
+                    <td class="p-4 font-bold text-slate-800">${tx.id}</td>
+                    <td class="p-4 text-slate-500">${tx.date}</td>
+                    <td class="p-4 font-semibold text-slate-700 max-w-xs truncate">${tx.items}</td>
+                    <td class="p-4">${payBadge}</td>
+                    <td class="p-4 font-extrabold text-slate-800">${amountLabel}</td>
+                    <td class="p-4">${statusBadge}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+
+        // ==============================================
+        // NOTIFIKASI TOAST TERSUAI (Tanpa Sekatan Pop-up)
+        // ==============================================
+        let toastTimeout = null;
+        function showToast(message, type = "success") {
+            const toast = document.getElementById("toast-banner");
+            const iconContainer = document.getElementById("toast-icon");
+            const msgContainer = document.getElementById("toast-msg");
+
+            if (!toast) return;
+
+            // Bersihkan had masa notifikasi terdahulu
+            if (toastTimeout) {
+                clearTimeout(toastTimeout);
+            }
+
+            // Laraskan Ikon & Warna Mengikut Jenis Notifikasi
+            if (type === "success") {
+                iconContainer.className = "w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-sm";
+                iconContainer.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
+            } else if (type === "error") {
+                iconContainer.className = "w-8 h-8 rounded-full bg-rose-500 text-white flex items-center justify-center shrink-0 shadow-sm";
+                iconContainer.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i>`;
+            } else {
+                iconContainer.className = "w-8 h-8 rounded-full bg-sky-500 text-white flex items-center justify-center shrink-0 shadow-sm";
+                iconContainer.innerHTML = `<i class="fa-solid fa-circle-info"></i>`;
+            }
+
+            msgContainer.innerText = message;
+
+            // Kesan Animasi Kemunculan
+            toast.classList.remove("translate-y-24", "opacity-0");
+            toast.classList.add("translate-y-0", "opacity-100");
+
+            // Hilang secara automatik dalam masa 3.5 Saat
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove("translate-y-0", "opacity-100");
+                toast.classList.add("translate-y-24", "opacity-0");
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
